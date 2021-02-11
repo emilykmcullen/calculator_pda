@@ -26,7 +26,7 @@ describe('calculator', () => {
     cy.get('.display').should('contain', '3')
   });
 
-  it('multiple operations can be chained together, output as expected for decimal and negative numbers ', () => {
+  it('multiple operations can be chained together', () => {
     cy.get('#number1').click()
     cy.get('#operator_multiply').click()
     cy.get('#number2').click()
@@ -40,7 +40,31 @@ describe('calculator', () => {
     cy.get('.display').should('contain', '-3.75')
   });
 
-  it('output as expected for very large numbers, and positive numbers', () => {
+  it('output as expected for decimal numbers', () => {
+    cy.get('#number1').click()
+    cy.get('#operator_divide').click()
+    cy.get('#number2').click()
+    cy.get('#operator_equals').click();
+    cy.get('.display').should('contain', '0.5')
+  });
+
+  it('output as expected for negative numbers', () => {
+    cy.get('#number1').click()
+    cy.get('#operator_subtract').click()
+    cy.get('#number2').click()
+    cy.get('#operator_equals').click();
+    cy.get('.display').should('contain', '-1')
+  });
+
+  it('output as expected for positive numbers', () => {
+    cy.get('#number1').click()
+    cy.get('#operator_add').click()
+    cy.get('#number2').click()
+    cy.get('#operator_equals').click();
+    cy.get('.display').should('contain', '3')
+  });
+
+  it('output as expected for very large numbers', () => {
     cy.get('#number1').click()
     cy.get('#number0').click()
     cy.get('#number0').click()
